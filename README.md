@@ -72,6 +72,16 @@ All parts of this stack are loosely coupled:
 - `repeatr` works entirely with formulas.  You can template formulas with `reppl`, or with anything you like -- the API is simply json/yaml.
 - `tlpkg` is built to handle packages that play well in the Timeless ecosystem -- but there's nothing to say you can't use `apt` or `yum` or `dnf` inside `repeatr` containers and `reppl` pipelines.
 
+See [the ecosystem map](ecosystem.png) for a big-picture layout of how the projects are connected.
+
+### Additional tools
+
+|  Tool       |  Repo                                           |  Role      |
+|:-----------:|:-----------------------------------------------:|:-----------|
+| `r2k8s`     | [github](https://github.com/polydawn/r2k8s)     |  `r2k8s` bridges the repeatr and kubernetes ecosystems: run formulas remotely in a kubernetes cluster, or template kubernetes podspecs to use formulas to launch commands.
+| `formulary` | [github](https://github.com/polydawn/formulary) |  A collection of repeatr formulas.  You can use this as reference materials.  (All of our base image snapshots come from here!)
+
+
 
 Why hashes?  Why can't I just download "somefoo-vbar.baz.tar.gz"?
 -----------------------------------------------------------------
