@@ -63,9 +63,14 @@ Tools
 | `repeatr`   | [github](https://github.com/polydawn/repeatr)   |  Repeatr evaluates formulas.  `formula` ---`repeatr run`---> `runrecord`
 | `hitch`     | [github](https://github.com/polydawn/hitch)     |  Hitch associates human-readable names and metadata to WareIDs.  It's a release tracking system.
 | `rio`       | [github](https://github.com/polydawn/rio)       |  R-I/O stands for Repeatable Input/Output: it's tooling for packing Filesets into Wares, mirroring Wares between storage systems, and unpacking Filesets fetched by WareID.  Glue for getting files to and from other systems, in other words.
-| `reppl`     | [github](https://github.com/polydawn/reppl)     |
-| `rpkg`      | planned                                         |
+| `reppl`     | [github](https://github.com/polydawn/reppl)     |  Reppl is the **Re**peatable **P**roject **P**ipe**l**ine: use it to stich together several formulas by passing wares between them.  Entire pipelines quickly rebuild incrementally, because `reppl` trackes previously executed formulas and automatically memoizes any step that hasn't changed.
+| `tlpkg`     | planned                                         |  The **T**ime**l**ess **p**ac**k**a**g**e manager: helps manage $PATH and environments to
 
+All parts of this stack are loosely coupled:
+
+- `hitch` can be driven entirely by shell script to make releases or look up releases and metadata.
+- `repeatr` works entirely with formulas.  You can template formulas with `reppl`, or with anything you like -- the API is simply json/yaml.
+- `tlpkg` is built to handle packages that play well in the Timeless ecosystem -- but there's nothing to say you can't use `apt` or `yum` or `dnf` inside `repeatr` containers and `reppl` pipelines.
 
 
 Why hashes?  Why can't I just download "somefoo-vbar.baz.tar.gz"?
