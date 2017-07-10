@@ -58,13 +58,13 @@ Concepts
 Tools
 -----
 
-|  Tool       |  Role      |
-|:-----------:|:-----------|
-| `repeatr`   | Repeatr evaluates formulas.  `formula` ---`repeatr run`---> `runrecord`
-| `hitch`     | Hitch associates human-readable names and metadata to WareIDs.  It's a release tracking system.
-| `rio`       | R-I/O stands for Repeatable Input/Output: it's tooling for packing Filesets into Wares, mirroring Wares between storage systems, and unpacking Filesets fetched by WareID.  Glue for getting files to and from other systems, in other words.
-| `reppl`     |
-| `rpkg`      |
+|  Tool       |  Repo                                           |  Role      |
+|:-----------:|:-----------------------------------------------:|:-----------|
+| `repeatr`   | [github](https://github.com/polydawn/repeatr)   |  Repeatr evaluates formulas.  `formula` ---`repeatr run`---> `runrecord`
+| `hitch`     | [github](https://github.com/polydawn/hitch)     |  Hitch associates human-readable names and metadata to WareIDs.  It's a release tracking system.
+| `rio`       | [github](https://github.com/polydawn/rio)       |  R-I/O stands for Repeatable Input/Output: it's tooling for packing Filesets into Wares, mirroring Wares between storage systems, and unpacking Filesets fetched by WareID.  Glue for getting files to and from other systems, in other words.
+| `reppl`     | [github](https://github.com/polydawn/reppl)     |
+| `rpkg`      | planned                                         |
 
 
 
