@@ -23,6 +23,7 @@ And thus package mangers end up wearing a lot of hats:
 - they can be queried for metadata and statuses ... ok, fine -- but also hopefully only meaningful during installs and upgrades, and running services need not query this!
 - they manage user IDs and the like ... now we're getting in deep water!  this tends to have *order-dependent* outcomes, which is dangerous to long term maintainence and consistency.
 - they run *arbitrary code* by default during installations, since so much glue is required ... and now all control is really lost.
+- they often *launch daemons* by default ... which is often reasonable in end-user machine management, but utterly wrong when working in containers or doing builds.
 
 In the Timeless Stack, we want to strip most of that away and return to basics.
 
