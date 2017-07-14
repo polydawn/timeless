@@ -1,0 +1,27 @@
+inputs:
+  "/":              {tag: "base-img"}
+  "/app/go":        {tag: "go-compiler-bin"}
+  "/task/repeatr":  {tag: "repeatr-src"}
+action:
+  cwd: "/task/repeatr/"
+  env:
+    "PATH": "/bin/:/usr/bin/:/app/go/go/bin/"
+    "GOROOT": "/app/go/go"
+  command:
+    - "/bin/bash"
+    - "-c"
+    - |
+      set -euo pipefail
+
+      ## Build and self-test.
+      ./goad
+
+      ## Shuffle for packaging.
+      mkdir output
+      cp -r bin/ output/
+      cp README.md LICENSE output/
+outputs:
+  "/task/repeatr/output":
+    tag: "repeatr-pkg"
+    type: "tar"
+    silo: "file+ca://./wares/"
