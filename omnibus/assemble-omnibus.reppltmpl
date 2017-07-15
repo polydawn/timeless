@@ -1,0 +1,23 @@
+inputs:
+  "/":                  {tag: "base-img"}
+  "/assembly/repeatr":  {tag: "repeatr-pkg"}
+  "/assembly/reppl":    {tag: "reppl-pkg"}
+action:
+  cwd: "/assembly"
+  command:
+    - "/bin/bash"
+    - "-c"
+    - |
+      set -euo pipefail
+      ## Make a single bin that symlinks all commands for easier $PATH'ing.
+      mkdir bin
+      ln -s ../repeatr/bin/repeatr bin/repeatr
+      ln -s ../reppl/bin/reppl     bin/reppl
+outputs:
+  "/assembly":
+    tag:  "timeless-pkg"
+    type: "tar"
+    filters: ## you probably want to have these be owned by root since they're tools you usually run as root
+      - uid 0
+      - gid 0
+    silo: "file+ca://./wares/"

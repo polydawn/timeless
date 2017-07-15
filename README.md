@@ -83,6 +83,16 @@ See [the ecosystem map](ecosystem.png) for a big-picture layout of how the proje
 
 
 
+How do I get started doing something Fun?
+-----------------------------------------
+
+Check out the [omnibus](./omnibus) dir for an example of using Repeatr and Reppl to build... Repeatr, Reppl, and the rest of the Timeless Stack!
+
+You'll need to grab the [binary releases](https://github.com/polydawn/timeless/releases) in order to bootstrap
+(or, build the individual tools from source).
+
+
+
 Why hashes?  Why can't I just download "somefoo-vbar.baz.tar.gz"?
 -----------------------------------------------------------------
 

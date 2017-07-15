@@ -1,0 +1,26 @@
+inputs:
+  "/":            {"tag": "base-img"}
+  "/app/go":      {"tag": "go-compiler-bin"}
+  "/task/reppl":  {"tag": "reppl-src"}
+action:
+  cwd: "/task/reppl"
+  command:
+    - "/bin/bash"
+    - "-c"
+    - |
+      set -euo pipefail
+      export GOROOT=/app/go/go
+      export PATH=$PATH:/app/go/go/bin
+
+      ## Build and self-test.
+      ./goad
+
+      ## Shuffle for packaging.
+      mkdir output
+      cp -r bin/ output/
+      cp README.md LICENSE output/
+outputs:
+  "/task/reppl/output":
+    tag: "reppl-pkg"
+    type: "tar"
+    silo: "file+ca://./wares/"
