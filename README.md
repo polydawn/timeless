@@ -107,3 +107,18 @@ Store bins may have labels of all sorts of descriptions in various precision to 
 
 Repeatr is the same: we use hashes to identify files and data because it's *simple* and it's *consistent* and it's *immune to silent changes* over time.
 End-to-end use of hashes is part of what makes the Timeless Stack... *timeless*.
+
+
+
+Keeping in touch
+----------------
+
+If you'd like to follow the Timeless project and get occasional email about releases and development milestones:
+
+- We have an (extremely) low-volume mailing list for announcements: [timeless-stack-announce@googlegroups.com](https://groups.google.com/forum/#!forum/timeless-stack-announce)
+
+If you'd like to discuss development, ask questions, or just lurk the community:
+
+- Feel free to grab the email address from git commit messages and get in touch directly, or
+- We have a community mailing list that anyone may join: [timeless-stack@googlegroups.com](https://groups.google.com/forum/#!forum/timeless-stack)
+- If the mailing list is quiet, it's because most of the core team is on [Matrix](https://matrix.org); ask for more info.
