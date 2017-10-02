@@ -27,30 +27,6 @@ will be skipped, all filesystem tweaks skipped, and the default cwd
 becomes plain '/'.)
 
 
-Policy Levels
--------------
-
-Before getting into command enviornment defaults, we need to talk
-briefly about Policy levels.
-
-Policy settings are a short enum:
-
-- `routine`
-- `governor`
-- `sysad`
-
-This list goes from lowest to highest privilege levels.
-(The "routine" policy is extremely safe.  The "sysad" policy
-explicitly means giving the contained process enough privilege
-that it may be able to escalate to root on your host, reboot
-your machine, etc.  You probably don't want to use the higher
-Policy settings if you can help it, and certainly not on any
-untrusted code or containers.)
-
-FIXME you uh actually *don't* have to talk about this because
-we're splitting out the UID thing.
-
-
 Default Action & Command Environment
 ------------------------------------
 
