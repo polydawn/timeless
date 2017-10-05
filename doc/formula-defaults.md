@@ -108,6 +108,16 @@ parts of the parent files into an output which preserves those properties.)
 (As an edge case, these mutations will be skipped if the paths they
 would affect would end up outside of any mounts through to the host.)
 
+### Cwd
+
+The cwd will be made, if it doesn't exist,
+and it will be readable and writable to the owner (e.g. bitwise `|0700`).
+The owner UID and GID will be set to the formula's UID and GID.
+All of the parent dirs will be made traversable to "everyone"
+(e.g. bitwise `|0001`) if they aren't already.
+
+tl;dr: Your process should always be free to write in its own homedir.
+
 ### Homedir
 
 The homedir will be made, if it doesn't exist,
