@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+set -x
+
+mdbook build -d site
+git init site
+(cd site
+git remote add github git@github.com:polydawn/polydawn.github.io.git
+git add .
+git commit -m 'site'
+git push -f github
+)
