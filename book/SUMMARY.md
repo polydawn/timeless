@@ -2,7 +2,8 @@
 
 - [The Timeless Stack](./README.md)
 - [Motivations](./motivations.md)
-	- [What is the Timeless advantage?](./motivations-edge.md)
+	- [Goals](./motivations-goals.md)
+	- [Why forge a new path?](./motivations-edge.md)
 - [Core Concepts](./concepts.md)
 	- [Wares](./concepts-wares.md)
 	- [Formulas](./concepts-formula.md)
@@ -11,9 +12,9 @@
 	- [Rio](./tools-rio.md)
 	- [Repeatr](./tools-repeatr.md)
 	- [Hitch](./tools-hitch.md)
-	- [${planner}](./tools-planners.md)
-- [Pushing the Envelope](./future.md)
-	- [Packaging](./future-packaging.md)
+	- [Gluing it all together](./tools-glue.md)
+- [Carrying it Further](./beyond-core.md)
+	- [Bundling Recommendations](./bundle-recommendations.md)
 
 ---
 

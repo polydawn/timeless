@@ -2,7 +2,7 @@
 set -euo pipefail
 set -x
 
-mdbook build -d site
+mdbook build -d site --no-create
 git init site
 (cd site
 git remote add github git@github.com:polydawn/polydawn.github.io.git
