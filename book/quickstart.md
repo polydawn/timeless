@@ -37,7 +37,7 @@ computing with repeatr
 The first piece of the Timeless Stack we'll use is [Repeatr](./tools-repeatr.md).
 Repeatr computes things -- and you guessed it, hopefully repeatedly.
 To do this, Repeatr uses [containers](./glossary.md#containers) to isolate environments,
-we will need to explicitly identify all of our raw materials so Repeatr can set up that isolated environment.
+and it will be our job to give a list identifing all of our raw materials to Repeatr so it can set up that isolated environment.
 
 ### hello-world formula
 
@@ -59,8 +59,11 @@ we will need to explicitly identify all of our raw materials so Repeatr can set 
 }}
 ```
 
-This snippet is a formula (and some "context" configuration).
-Copy and paste this into a file called `example.formula`, and we can run it!
+This snippet is called formula (and some "context" configuration).
+It lists the inputs we need -- these are specified using [WareID](./glossary.md#wareID)s --
+and describes the action we want to run in the container.
+
+Copy and paste formula and its context into a file called `example.formula`, and we can run it!
 
 ```bash
 repeatr run example.formula
