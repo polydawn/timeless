@@ -1,8 +1,19 @@
-
-What is the Timeless Stack?
----------------------------
+The Timeless Stack?
+===================
 
 The Timeless Stack is a software ecosystem that's about *making computers reliable*.
+
+
+Now in html book form!
+----------------------
+
+The latest docs are in the process of being ported to a html book format.
+You can read that at https://polydawn.github.io/ .
+(The source is in the "book" dir in this repo.)
+
+
+Motivations
+-----------
 
 ### What is "reliable"?
 
