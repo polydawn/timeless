@@ -184,10 +184,30 @@ The `formulaID` doesn't change ;)
 packing and unpacking Wares
 ---------------------------
 
-// TODO quick walkthrough of rio
-// do show 'scan'
-// anything about advanced flags should aim to a different doc
-// mention but do not demonstrate mirror commands
+Once you have things packed into wares and identified by WareIDs, it's easy to assemble them and also build new ones with Repeatr.
+But what about at the edges of the system?
+How do we import new stuff from the outside world?
+How do we export stuff we make to other folks?
+
+The answers all these questions are pretty simple: [`rio`](./tools-rio.md).
+You can use `rio --help` to get an overview of everything Rio can do;
+in short, it's for moving packed Wares around and for shuffling files in and out of packed form.
+
+### packing files into wares
+
+// TODO `rio pack`
+
+### unpacking wares into files
+
+// TODO `rio pack`
+
+### scanning existing packs for WareIDs
+
+// TODO `rio scan`
+
+### mirroring existing packs to many warehouses
+
+// TODO `rio mirror`
 
 
 
