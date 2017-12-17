@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+mkdir -p .memo
+export REPEATR_MEMODIR=".memo"
+
 BASE_IMG_HASH="tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
 BASE_IMG_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
