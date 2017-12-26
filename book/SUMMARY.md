@@ -1,6 +1,6 @@
 # Summary
 
-- [The Timeless Stack](./README.md)
+- [Welcome](./README.md)
 	<!-- - [Motivations & Goals](./motivations-goals.md) -->
 	<!-- - [Why forge a new path?](./motivations-edge.md) -->
 - [Quickstart](./quickstart.md)
