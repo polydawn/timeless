@@ -97,10 +97,15 @@ See [the ecosystem map](ecosystem.png) for a big-picture layout of how the proje
 How do I get started doing something Fun?
 -----------------------------------------
 
-Check out the [omnibus](./omnibus) dir for an example of using Repeatr and Reppl to build... Repeatr, Reppl, and the rest of the Timeless Stack!
+Check out the [omnibus](./omnibus) dir for an example of using Repeatr and Rio to build... Rio, Repeatr, and the rest of the Timeless Stack!
 
 You'll need to grab the [binary releases](https://github.com/polydawn/timeless/releases) in order to bootstrap
 (or, build the individual tools from source).
+
+This [omnibus](./omnibus) example uses basic bash string templating to compose pipelines just to keep things simple
+and make it utterly clear that you can compose objects for this API any way you want.
+You may want to use a more powerful language when building your own higher level pipelines.
+We're explicitly committed to supporting that; the Repeatr JSON API *is meant* to be used freely.
 
 
 
