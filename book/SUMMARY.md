@@ -8,7 +8,7 @@
 	<!-- - [Wares](./concepts-wares.md) -->
 	<!-- - [Formulas](./concepts-formula.md) -->
 	<!-- - [Releases & Replays](./concepts-hitch.md) -->
-<!-- - [Core Tools](./tools.md) -->
+- [Components](./components.md)
 	<!-- - [Rio](./tools-rio.md) -->
 	<!-- - [Repeatr](./tools-repeatr.md) -->
 	<!-- - [Hitch](./tools-hitch.md) -->
