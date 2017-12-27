@@ -19,3 +19,6 @@ results today, tomorrow, next week, next year, and... you get the picture.
 This documentation mostly assumes you're sold on Item #1.
 We'll be talking mostly about the practical usage of the tools and their APIs in Item #2,
 and giving demonstrations of how to produce Item #3 for yourself.
+
+You should see a table of contents on the left, and page-flip buttons just below.
+(On mobile you may need to click the pancake stack to show/hide the nav menu.)
