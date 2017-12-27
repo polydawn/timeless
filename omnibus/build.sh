@@ -32,13 +32,13 @@ RIO_SRC_URL="https://github.com/polydawn/rio"
 REPEATR_PLUGIN_RUNC_HASH="tar:9ZaF8VyS4kiVThF3gxFGKVpb3df7wE4vqgTdWFXG5KnQJdYScbjtDsCfxNvQbw6JiB"
 REPEATR_PLUGIN_RUNC_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-REPEATR_SRC_HASH="git:892c1eee2641ea49c4d1d3e606630a76c8157f99"
+REPEATR_SRC_HASH="git:3cf6a45846f1b33e6459adee244f1ac18ae0d511"
 REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 
 HITCH_SRC_HASH="git:412cd1d14836502b86fb4d66059890d4ed48ec97"
 HITCH_SRC_URL="https://github.com/polydawn/hitch"
 
-REFMT_SRC_HASH="git:4a659d150bf4e66fe6f74ab510ffc059db6936fe"
+REFMT_SRC_HASH="git:0c95c88dcc363f51f29c9b0a5d22321c5d70b51f"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
 
