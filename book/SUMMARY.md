@@ -1,20 +1,15 @@
 # Summary
 
 - [Welcome](./README.md)
-	<!-- - [Motivations & Goals](./motivations-goals.md) -->
-	<!-- - [Why forge a new path?](./motivations-edge.md) -->
+	- [How to navigate this document](./nav.md)
 - [Quickstart](./quickstart.md)
-<!-- - [Core Concepts](./concepts.md) -->
-	<!-- - [Wares](./concepts-wares.md) -->
-	<!-- - [Formulas](./concepts-formula.md) -->
-	<!-- - [Releases & Replays](./concepts-hitch.md) -->
-- [Components](./components.md)
-	<!-- - [Rio](./tools-rio.md) -->
-	<!-- - [Repeatr](./tools-repeatr.md) -->
-	<!-- - [Hitch](./tools-hitch.md) -->
-	<!-- - [Gluing it all together](./tools-glue.md) -->
-<!-- - [Carrying it Further](./beyond-core.md) -->
-	<!-- - [Bundling Recommendations](./bundle-recommendations.md) -->
+- [Design Concepts](./design/README.md)
+	- [Timeless Stack API layers](./design/API.md)
+	- [Responsible Packaging](./design/packaging.md)
+- [CLI docs](./cli/README.md)
+	- [Rio](./cli/rio.md)
+	- [Repeatr](./cli/repeatr.md)
+	<!-- todo: more sections as the other tools stabilize api -->
 
 ---
 

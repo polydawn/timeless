@@ -1,3 +1,6 @@
+Welcome
+=======
+
 Welcome to the Timeless Stack documentation.
 
 The Timeless Stack is three things:
