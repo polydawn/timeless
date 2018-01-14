@@ -10,6 +10,21 @@ more than `tar`, because `rio` also handles identifying data by hash -- we call
 this a WareID -- which lets us be clear about handling immutable snapshots of
 filesystems.
 
+`rio` has a ton of different capabilities -- it can handle many different pack
+formats; as long as a consistent hash can be defined, `rio` can probably handle
+it.  Most typically, we use `rio` with the `"tar"` packType, but there's also
+support for `"git"` (yes! git support is built in!), and support for more
+formats is welcome in the future.
+
+`rio` abstracts the actual storage location from the identity of the data.
+The most obvious expression of this is that most of the `rio` commands can
+take the `--source=<url>` and `--target=<url>` arguments *multiple times*.
+`rio` also has native support for a wide variety of cloud storage systems in
+addition to using your local filesystem: AWS S3, GCP Cloud Storage, and local
+filesystems can all be used pretty much interchangeably, as well as HTTPS URLs
+for read-only modes.
+
+
 CLI synopsis
 ------------
 
@@ -18,7 +33,6 @@ rio pack <packType> <srcPath>
 rio unpack <packType:wareID> <dstPath>
 rio scan <packType> --source=<url>
 rio mirror <packType:wareID> --target=<url...>
-
 ```
 
 - `rio pack` takes files on your filesystem and packs them into a Ware (also
