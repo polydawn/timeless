@@ -45,7 +45,7 @@ Formulas and RunRecords -- hashable, contain no human naming, identifying comput
 The main tool at this level is [`repeatr`](./cli/repeatr.md).
 
 
-### Layer 2: Identifying Content
+### Layer 2: Computation Graphs
 
 Basting -- statically represented pipelines consisting of multiple formulas, but some of which do *not* have all inputs pinned, and instead rely on other formulas in the group.
 
