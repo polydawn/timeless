@@ -6,6 +6,7 @@ mdbook build -d site --no-create
 git init site
 (cd site
 git remote add github git@github.com:polydawn/polydawn.github.io.git
+echo -n "repeatr.io" > CNAME # github pages config
 git add .
 git commit -m 'site'
 git push -f github
