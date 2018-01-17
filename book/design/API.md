@@ -9,14 +9,17 @@ formats.
 The higher level layers are increasingly expressive, but also require increasing
 amount of interpretation.
 
-- Layer 0: Identifying Content --
-    simple, static identifiers for data in filesystems.
-- Layer 1: Identifying Computation --
-    scripts, plus explicit references to outputs and inputs.
-- Layer 2: Computation Graphs --
-    statically represented pipelines, using multiple isolated computations (with completely independent control over their environments) to build outputs.
-- Layer 3: BYOP (Bring Your Own Planner) --
-    use any tools you want to generate Layer 2 pipelines; we'll bring import and export APIs!
+- **Layer 0: Identifying Content** &mdash;
+    simple, static identifiers for snapshots of filesystems.
+- **Layer 1: Identifying Computation** &mdash;
+    scripts, plus explicit declarations of needed input filesystem snapshots,
+    and selected paths which should be snapshotted and kept as outputs.
+- **Layer 2: Computation Graphs** &mdash;
+    statically represented pipelines, using multiple isolated computations (each
+    with independent, declarative environments) to build complex outputs.
+- **Layer 3+: Planners** &mdash;
+    use any tools you want to generate Layer 2 pipelines!  The Timeless Stack has
+    standard bring import and export APIs, and you can compute Layer 2 however you like!
 
 The Timeless Stack focuses ensuring the lower level layers are appropriate
 to track in [version control](https://en.wikipedia.org/wiki/Version_control).
