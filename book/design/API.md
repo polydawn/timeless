@@ -38,7 +38,26 @@ the lower layers.
 
 WareIDs -- hashes, identifying content, fully static.
 
-The main tool at this level is [`rio`](./cli/rio.md).
+The main tool at this level is [Rio](./cli/rio.md).
+Operations like `rio pack` and `rio unpack` convert filesystems into packed
+Wares (which are easy to replicate to other computers) and WareIDs (so we can
+easily refer to the Wares even before copying them)... and back again to filesystems.
+
+#### Data Examples
+
+Data at Layer 0 is very terse: it's all WareIDs, which are a simple string identifier
+composed of a "packtype" (e.g. `tar`, `git`, `zip`, etc) and a hash.
+
+These are all examples of WareIDs:
+
+- `tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6`
+- `tar:8ZaAmtWZbjtNfJWD8nmGRLDn2Ec745wKWoee4Tu1ZcxacdmMWMv1ssjbGrg8kmwn1e`
+- `git:825d8382ac3d46deb89104460bbfb5fbc779dab5`
+- `git:3cf6a45846f1b33e6459adee244f1ac18ae0d511`
+
+As you can see, these aren't very human-readable.  We'll address this in the
+higher protocol layers -- around Layer 2 we'll begin to construct mappings
+that associate human-readable names to these opaque and immutable references.
 
 
 ### Layer 1: Identifying Computation
