@@ -5,10 +5,12 @@ Glossary
 /* We heavily re-style h5 elements here so that mdbook generates nice links. */
 h5 {
 	display: inline-block;
+	margin: 1em 0 0 0;
 }
 h5:after {
 	font-weight: normal;
 	content: " — ";
+	margin: 0 0.5em;
 }
 p {
 	display: inline;
