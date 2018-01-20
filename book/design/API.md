@@ -144,8 +144,12 @@ and while the Layer 1 formulas *will* converge to the exact same identity
 hashes, the Layer pipelines will not.
 Examples of differences that may result in identical Layer 1 content but
 distinct Layer 2 pipelines include step names (one author may have called a step
-"stepFoo" while the other titled it "stepBaz") or using the same Wares but by
-different aliases (one pipeline might reference a WareID released as "foo:v1.0:linux" while another references it as "foo:v1.0rc2:linux" when those names actually resolve to the same WareID).
+`"stepFoo"` while the other titled it `"stepBaz"`) or using the same Wares but
+by different aliases (one pipeline might reference a WareID released as
+`"foo:v1.0:linux"` while another references it as `"foo:v1.0rc2:linux"` when
+those names actually resolve to the same WareID).
+
+:warning: Layer 2's `Basting` format is recently developed (early 2018).  It is subject to change.
 
 ### Layer 3: Planners
 
