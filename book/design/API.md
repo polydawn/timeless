@@ -36,7 +36,8 @@ the lower layers.
 
 ### Layer 0: Identifying Content
 
-WareIDs -- hashes, identifying content, fully static.
+The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
+identify content, fully immutably.
 
 The main tool at this level is [Rio](./cli/rio.md).
 Operations like `rio pack` and `rio unpack` convert filesystems into packed
@@ -64,8 +65,70 @@ that associate human-readable names to these opaque and immutable references.
 
 Formulas and RunRecords -- hashable, contain no human naming, identifying computations, fully static.
 
-The main tool at this level is [`repeatr`](./cli/repeatr.md).
+The main tool at this level is [Repeatr](./cli/repeatr.md).  The most common
+command is `repeatr run`, which takes a `Formula`, evaluates it, and returns
+a `RunRecord` (see the example data structures, below).
 
+#### Data Examples
+
+A formula looks something like this (in YAML format), though they may have
+*many* inputs, and also multiple outputs:
+
+```
+# This is a Formula.
+inputs:
+  "/":       "tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
+  "/app/go": "tar:8ZaAmtWZbjtNfJWD8nmGRLDn2Ec745wKWoee4Tu1ZcxacdmMWMv1ssjbGrg8kmwn1e"
+  "/task":   "git:825d8382ac3d46deb89104460bbfb5fbc779dab5"
+action:
+  exec:
+    - "/bin/bash"
+    - "-c"
+    - |
+      export PATH=\$PATH:/app/go/go/bin
+      ./goad install
+outputs:
+  "/task/bin": {packtype: "tar"}
+```
+
+As you can see, a Formula composes many of the Layer 0 components.
+It also *generates* more Layer 0 WareIDs.
+When you feed the above formula to `repeatr run`, you'll get a JSON
+object on stdout called a RunRecord, which resembles this one:
+
+```
+# This is a RunRecord.
+{
+	"guid": "c3rms673-o2k84p3y-4ztef48q",
+	"time": 1515875768,
+	"formulaID": "3vFsH3UbWJZHPrhgckpf5DJrq5DisykE3ND6Z14ineQJxdvZb9iapiKKGtE8ZHEDzM",
+	"exitCode": 0,
+	"results": {
+		"/task/bin": "tar:6XKnQ4Kcf6zmf16VNUAyBHirTEKV8WfB3JunSx3Szenc7keiotuEDCNZjCXcxod7mH"
+	}
+}
+```
+
+RunRecords contain several items which are essentially random -- namely, the
+`time` and `guid` fields.  They also contain many fields which should be
+deterministic given the same Formula -- specifically, `formulaID` is actually
+a **hash** of the Formula that was evaluated; it's an immutable, unforgeable
+reference back to the Formula.  Most importantly, though, the RunRecord
+contains the `results` map.  This contains a key-value pair of path to WareID --
+one pair for each output path specified in the Formula.  The `results` section
+depends on what your formula *does*, of course.
+
+Like Formulas, RunRecords can also be hashed to produce unique identifiers.
+These hashes cover the unreproducible fields like `time` and `guid`, so they
+tend not to collide, and thus are useful as primary key for storing RunRecords.
+The collision resistance makes it easy to gather RunRecords from many different
+authors -- useful if we want to compare their `results` fields later!
+
+(`repeatr run` will also emit the stdout and stderr printed by your contained
+process on its own stderr channel, plus some decoration.  This is configurable,
+but the important note here is that we consider those streams to be debug info,
+and we don't keep them.  Use `tee` or route them to a file if they're needed
+as outputs that can be referenced by other formulas later.)
 
 ### Layer 2: Computation Graphs
 
