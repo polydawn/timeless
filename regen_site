@@ -5,6 +5,7 @@ set -x
 mdbook build -d site --no-create
 git init site
 (cd site
+find -type f -print0 | xargs -0 sed -i 's/\.html"/"/g' # shorter links plz
 git remote add github git@github.com:polydawn/polydawn.github.io.git
 echo -n "repeatr.io" > CNAME # github pages config
 git add .
