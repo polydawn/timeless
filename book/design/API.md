@@ -34,6 +34,10 @@ amounts of code at the highest levels can direct massive amounts of work in
 the lower layers.
 
 
+The Layers, in detail
+---------------------
+
+
 ### Layer 0: Identifying Content
 
 The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
@@ -130,6 +134,7 @@ but the important note here is that we consider those streams to be debug info,
 and we don't keep them.  Use `tee` or route them to a file if they're needed
 as outputs that can be referenced by other formulas later.)
 
+
 ### Layer 2: Computation Graphs
 
 Basting -- statically represented pipelines consisting of multiple formulas, but some of which do *not* have all inputs pinned, and instead rely on other formulas in the group.
@@ -151,13 +156,25 @@ those names actually resolve to the same WareID).
 
 :warning: Layer 2's `Basting` format is recently developed (early 2018).  It is subject to change.
 
+
 ### Layer 3: Planners
 
 Planners at large -- this layer is open to substantial interpretation and not actually standardized; the only constraint for integrating it into the Timeless ecosystem is that whatever is going on at this layer, it has to produce the "basting" format; from there, other tools can interoperate.
 
 
-What can we do *without* Layer 3?
----------------------------------
+Which layer should I interact with?
+-----------------------------------
+
+Which layer you should interact with depends on what kind of work you're doing.
+
+In short, most people will author stuff up at Layer 3.  It's where the most
+expressive forms of authorship are at.  But most **tools** will operate on the
+lower layers, and integrations with other ecosystems (you want to track releases
+on the blockchain?  Hello, welcome!) will similarly want to interface with
+these lower layers.
+
+
+### What can we do *without* Layer 3?
 
 We can do a great deal of work with Layer 0/1/2 alone!
 
@@ -175,8 +192,7 @@ can *reproduce our entire environments, with all dependencies, and repeat our
 entire pipeline of data processing*.
 
 
-What do we need Layer 3 semantics for, then?
---------------------------------------------
+### What do we need Layer 3 semantics for, then?
 
 In short, moving forward.
 
@@ -193,8 +209,47 @@ typical expectation is that each step should reliably produce the same data,
 so the overall semantics of re-executing a whole Layer 2 pipeline should be the
 same as an individual Layer 1 step.
 
-Layer 3 is where we actually do the interesting work of generating *new* pipelines.  Layer 3 can look up release information from other projects, for
+Layer 3 is where we finally relax on immutability, and thus it's where we begin
+to do the interesting work of generating *new* pipelines and *updating* inputs.
+Layer 3 can look up release information from other projects, for
 example, and bring that in as an input to the Layer 2 data.
 Being precise in this information in Layer 2 is critical for later auditability
 and reproducibility; but in Layer 3, we're free to compute new plans using
 whatever latest freshest data we want.
+
+Thus, most human authorship happens using Layer 3 tools and languages,
+because it provides the most flexibility and leverage -- then,
+we bake those plans into Layer 2 immutable data ASAP, in order to get
+the best benefits of both worlds (expressive *and* immutable).
+
+
+### Integration Examples
+
+Layer 0 WareIDs are short and easy to copy-paste to share in emails, slacks,
+tweets, or good ol' IRC.  Other people can download data produced by Timeless
+Stack pipelines without a fuss.
+
+Layer 1 Formulas can be put on something as simple as *pastebin* in order to
+share with other people.
+It can be useful for self-contained bug reports, for example.
+
+Layer 2 Basting is suitable to feed to tools which can traverse graphs and e.g.
+draw nice renderings of build dependencies.
+Such tools could also ask and quickly answer questions like "Find all
+dependencies ever used, recursively, to build $tool-foobar; now, tell me if they
+currently have any security vulnerabilities"?
+
+Layer 2 Basting is suitable for publication in a distributed ledger.
+This can be used as part of a system to make read-only public audit and
+accountability possible.
+
+Layer 2 Basting, like Layer 1 Formulas, can be easily re-evaluated -- even by
+other people, other machines, and even months or years later -- so it can be
+used to distribute small and reproducible instructions rather than large
+binary blobs that take lots of network and disk space.  This makes it excellent
+for Continuous Integration / Continuous Deployment systems, which can use it to
+track and report the health as well as historical states of large systems.
+
+The possibilities are pretty much endless.  If you can parse a JSON API, you can
+build integrations with the Timeless Stack at whatever layer seems the most
+useful to *you*.
