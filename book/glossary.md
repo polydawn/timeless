@@ -55,3 +55,24 @@ Holding a WareID gives you an immutable reference to a [Ware](#Ware)
 
 ---
 
+##### content-addressable
+
+Describes the practice of identifying data based on its own content
+(rather than identifying it based on a name which conveys other meanings).
+Typically implemented by using a cryptographic hash over the content.
+Content-addressable systems are immutable.
+
+----
+
+##### Formula
+
+An API structure describing a series of [Ware](#Ware)s,
+how to arrange them in a filesystem, some action to perform on them,
+and what parts of the filesystem to save as resultant Wares.
+Since Wares in a Formula are referred to by their content-addressable
+[WareID](#WareID), Formulas in turn are an immutable description of how to set
+up and run something.
+[Repeatr](cli/repeatr) evaluates a Formula to produce a [RunRecord](#RunRecord).
+
+---
+
