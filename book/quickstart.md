@@ -23,8 +23,8 @@ installing
 ----------
 
 First things first: we'll need a
-[`repeatr`](./tools-repeatr.md)
-(and [`rio`](./tools-rio.md)) binary on our `$PATH`.
+[`repeatr`](./tools-repeatr)
+(and [`rio`](./tools-rio)) binary on our `$PATH`.
 
 To build the latest versions: clone and follow the instructions in
 https://github.com/polydawn/repeatr .  This will require a [go compiler](https://golang.org/dl/), bash, git, and not much else.
@@ -34,7 +34,7 @@ https://github.com/polydawn/repeatr .  This will require a [go compiler](https:/
 computing with repeatr
 ----------------------
 
-The first piece of the Timeless Stack we'll use is [Repeatr](./tools-repeatr.md).
+The first piece of the Timeless Stack we'll use is [Repeatr](./tools-repeatr).
 Repeatr computes things -- and you guessed it, hopefully repeatedly.
 To do this, Repeatr uses [containers](./glossary.md#containers) to isolate environments,
 and it will be our job to give a list identifing all of our raw materials to Repeatr so it can set up that isolated environment.
@@ -189,7 +189,7 @@ But what about at the edges of the system?
 How do we import new stuff from the outside world?
 How do we export stuff we make to other folks?
 
-The answers all these questions are pretty simple: [`rio`](./tools-rio.md).
+The answers all these questions are pretty simple: [`rio`](./tools-rio).
 You can use `rio --help` to get an overview of everything Rio can do;
 in short, it's for moving packed Wares around and for shuffling files in and out of packed form.
 `rio` was what `repeatr` used earlier to get and save your files; if you watch

@@ -44,7 +44,7 @@ The Layers, in detail
 The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
 identify content, fully immutably.
 
-The main tool at this level is [Rio](./cli/rio.md).
+The main tool at this level is [Rio](./cli/rio).
 Operations like `rio pack` and `rio unpack` convert filesystems into packed
 Wares (which are easy to replicate to other computers) and WareIDs (so we can
 easily refer to the Wares even before copying them)... and back again to filesystems.
@@ -72,7 +72,7 @@ that associate human-readable names to these opaque and immutable references.
 
 Formulas and RunRecords -- hashable, contain no human naming, identifying computations, fully static.
 
-The main tool at this level is [Repeatr](./cli/repeatr.md).  The most common
+The main tool at this level is [Repeatr](./cli/repeatr).  The most common
 command is `repeatr run`, which takes a `Formula`, evaluates it, and returns
 a `RunRecord` (see the example data structures, below).
 
