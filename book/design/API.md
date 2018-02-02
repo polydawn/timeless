@@ -159,6 +159,77 @@ by different aliases (one pipeline might reference a WareID released as
 `"foo:v1.0:linux"` while another references it as `"foo:v1.0rc2:linux"` when
 those names actually resolve to the same WareID).
 
+#### Data Examples
+<a id=#layer-2-examples>
+
+A basting is composed of several formula elements, plus some information to wire
+intermediate steps together ("imports") and information to name the final interesting
+results ("exports"):
+
+```
+{
+	"steps": {
+		"stepBar": {
+			"imports": {
+				"/": "example.timeless.io/base:201801:linux-amd64",
+				"/woof": "wire:stepFoo:/task/out"
+			},
+			"formula": {
+				"inputs": {
+					"/": "tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
+				},
+				"action": {
+					"exec": [
+						"cat",
+						"/woof/records"
+					]
+				},
+				"outputs": {}
+			}
+		},
+		"stepFoo": {
+			"imports": {
+				"/": "example.timeless.io/base:201801:linux-amd64"
+			},
+			"formula": {
+				"inputs": {
+					"/": "tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
+				},
+				"action": {
+					"exec": [
+						"bash",
+						"-c",
+						"mkdir out\nls -la /usr/bin | tee > out/records"
+					]
+				},
+				"outputs": {
+					"/task/out": {"packtype": "tar"}
+				}
+			}
+		}
+	},
+	"exports": {
+		"a-final-product": "wire:stepFoo:/task/out"
+	},
+	"contexts": {
+		// ... practical, but non-critical info (e.g. mirror URLs) attaches here
+	}
+}
+```
+
+Evaluating a basting simply evaluates each formula in order, plugs together any
+intermediates, and runs the next formula, and so on.  The result is the same as
+Layer 1: a series of RunRecords.
+
+Notice how in this example, `"stepBar"`'s Formula has one less `input` than it
+does `import`... and that additional `import` is a `"wire"`.  This means it's
+dependent on another step in the Basting -- `"stepFoo"`, in this case, and the
+output from the `"/task/out"` path when we evaluate that formula.
+
+Exports of final products are the same format as intermediates: a "wire" points
+to the outputs from a step.  These "exports" are listed again in a final, additional
+`results` map at the end of evaluating a basting.
+
 :warning: Layer 2's `Basting` format is recently developed (early 2018).  It is subject to change.
 
 
