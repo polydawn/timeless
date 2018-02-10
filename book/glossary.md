@@ -76,3 +76,12 @@ up and run something.
 
 ---
 
+
+<!--
+**catalog**: A named record pointing to one or more `ware`s.  Catalogs associate the name to the `ware`'s hash, and are usually cryptographically signed.  Catalogs are a mutable structure, but also  continue to carry references to previously-referenced `ware`s even when updated.
+-->
+
+<!-- it's funny because this much older concept was still pretty close to the mark:
+
+**commission**: A document naming a series of `catalog`s, how to arrange their referenced `ware`s in a filesystem, some action to perform on them, and which `catalog`s should be updated to refer to new `ware`s saved from parts of the resultant filesystem.  In other words -- like formulas, but connected to catalogs instead of directly to wares.
+-->

@@ -39,7 +39,7 @@ The Layers, in detail
 
 
 ### Layer 0: Identifying Content
-<a id=#layer-0>
+<a id=#layer-0></a>
 
 The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
 identify content, fully immutably.
@@ -50,7 +50,7 @@ Wares (which are easy to replicate to other computers) and WareIDs (so we can
 easily refer to the Wares even before copying them)... and back again to filesystems.
 
 #### Data Examples
-<a id=#layer-0-examples>
+<a id=#layer-0-examples></a>
 
 Data at Layer 0 is very terse: it's all WareIDs, which are a simple string identifier
 composed of a "packtype" (e.g. `tar`, `git`, `zip`, etc) and a hash.
@@ -68,7 +68,7 @@ that associate human-readable names to these opaque and immutable references.
 
 
 ### Layer 1: Identifying Computation
-<a id=#layer-1>
+<a id=#layer-1></a>
 
 Formulas and RunRecords -- hashable, contain no human naming, identifying computations, fully static.
 
@@ -77,7 +77,7 @@ command is `repeatr run`, which takes a `Formula`, evaluates it, and returns
 a `RunRecord` (see the example data structures, below).
 
 #### Data Examples
-<a id=#layer-1-examples>
+<a id=#layer-1-examples></a>
 
 A formula looks something like this (in YAML format), though they may have
 *many* inputs, and also multiple outputs:
@@ -140,7 +140,7 @@ as outputs that can be referenced by other formulas later.)
 
 
 ### Layer 2: Computation Graphs
-<a id=#layer-2>
+<a id=#layer-2></a>
 
 Basting -- statically represented pipelines consisting of multiple formulas, but some of which do *not* have all inputs pinned, and instead rely on other formulas in the group.
 
@@ -160,7 +160,7 @@ by different aliases (one pipeline might reference a WareID released as
 those names actually resolve to the same WareID).
 
 #### Data Examples
-<a id=#layer-2-examples>
+<a id=#layer-2-examples></a>
 
 A basting is composed of several formula elements, plus some information to wire
 intermediate steps together ("imports") and information to name the final interesting
@@ -234,7 +234,7 @@ to the outputs from a step.  These "exports" are listed again in a final, additi
 
 
 ### Layer 3: Planners
-<a id=#layer-3>
+<a id=#layer-3></a>
 
 Planners at large -- this layer is open to substantial interpretation and not actually standardized; the only constraint for integrating it into the Timeless ecosystem is that whatever is going on at this layer, it has to produce the "basting" format; from there, other tools can interoperate.
 
