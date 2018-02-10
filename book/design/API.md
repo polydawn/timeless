@@ -38,8 +38,8 @@ The Layers, in detail
 ---------------------
 
 
+<a id=layer-0></a>
 ### Layer 0: Identifying Content
-<a id=#layer-0></a>
 
 The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
 identify content, fully immutably.
@@ -49,8 +49,8 @@ Operations like `rio pack` and `rio unpack` convert filesystems into packed
 Wares (which are easy to replicate to other computers) and WareIDs (so we can
 easily refer to the Wares even before copying them)... and back again to filesystems.
 
+<a id=layer-0-examples></a>
 #### Data Examples
-<a id=#layer-0-examples></a>
 
 Data at Layer 0 is very terse: it's all WareIDs, which are a simple string identifier
 composed of a "packtype" (e.g. `tar`, `git`, `zip`, etc) and a hash.
@@ -67,8 +67,8 @@ higher protocol layers -- around Layer 2 we'll begin to construct mappings
 that associate human-readable names to these opaque and immutable references.
 
 
+<a id=layer-1></a>
 ### Layer 1: Identifying Computation
-<a id=#layer-1></a>
 
 Formulas and RunRecords -- hashable, contain no human naming, identifying computations, fully static.
 
@@ -76,8 +76,8 @@ The main tool at this level is [Repeatr](./cli/repeatr).  The most common
 command is `repeatr run`, which takes a `Formula`, evaluates it, and returns
 a `RunRecord` (see the example data structures, below).
 
+<a id=layer-1-examples></a>
 #### Data Examples
-<a id=#layer-1-examples></a>
 
 A formula looks something like this (in YAML format), though they may have
 *many* inputs, and also multiple outputs:
@@ -139,8 +139,8 @@ and we don't keep them.  Use `tee` or route them to a file if they're needed
 as outputs that can be referenced by other formulas later.)
 
 
+<a id=layer-2></a>
 ### Layer 2: Computation Graphs
-<a id=#layer-2></a>
 
 Basting -- statically represented pipelines consisting of multiple formulas, but some of which do *not* have all inputs pinned, and instead rely on other formulas in the group.
 
@@ -159,8 +159,8 @@ by different aliases (one pipeline might reference a WareID released as
 `"foo:v1.0:linux"` while another references it as `"foo:v1.0rc2:linux"` when
 those names actually resolve to the same WareID).
 
+<a id=layer-2-examples></a>
 #### Data Examples
-<a id=#layer-2-examples></a>
 
 A basting is composed of several formula elements, plus some information to wire
 intermediate steps together ("imports") and information to name the final interesting
@@ -233,8 +233,8 @@ to the outputs from a step.  These "exports" are listed again in a final, additi
 :warning: Layer 2's `Basting` format is recently developed (early 2018).  It is subject to change.
 
 
+<a id=layer-3></a>
 ### Layer 3: Planners
-<a id=#layer-3></a>
 
 Planners at large -- this layer is open to substantial interpretation and not actually standardized; the only constraint for integrating it into the Timeless ecosystem is that whatever is going on at this layer, it has to produce the "basting" format; from there, other tools can interoperate.
 
