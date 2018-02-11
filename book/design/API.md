@@ -9,15 +9,15 @@ formats.
 The higher level layers are increasingly expressive, but also require increasing
 amount of interpretation.
 
-- <a href=#layer-0>**Layer 0: Identifying Content**</a> &mdash;
+- [**Layer 0: Identifying Content**](#layer-0) &mdash;
     simple, static identifiers for snapshots of filesystems.
-- <a href=#layer-1>**Layer 1: Identifying Computation**</a> &mdash;
+- [**Layer 1: Identifying Computation**](#layer-1) &mdash;
     scripts, plus explicit declarations of needed input filesystem snapshots,
     and selected paths which should be snapshotted and kept as outputs.
-- <a href=#layer-2>**Layer 2: Computation Graphs**</a> &mdash;
+- [**Layer 2: Computation Graphs**](#layer-2) &mdash;
     statically represented pipelines, using multiple isolated computations (each
     with independent, declarative environments) to build complex outputs.
-- <a href=#layer-3>**Layer 3+: Planners**</a> &mdash;
+- [**Layer 3+: Planners**](#layer-3) &mdash;
     use any tools you want to generate Layer 2 pipelines!  The Timeless Stack has
     standard bring import and export APIs, and you can compute Layer 2 however you like!
 
