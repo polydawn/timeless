@@ -8,8 +8,10 @@
 	- [Release Schema](./design/releasing.md)
 	- [Responsible Packaging](./design/packaging.md)
 - [CLI docs](./cli/README.md)
-	- [Rio](./cli/rio.md)
-	- [Repeatr](./cli/repeatr.md)
+	- [Rio (I/O)](./cli/rio.md)
+	- [Repeatr (Containers)](./cli/repeatr.md)
+	- [Hitch (Releases)](./cli/hitch.md)
+	- [Heft (Planning)](./cli/heft.md)
 	<!-- todo: more sections as the other tools stabilize api -->
 
 ---
