@@ -135,7 +135,7 @@ The permissions will be forced to bitwise `01777` unconditionally.
 If the dir was made, the owner UID and GID will be `0` and `0`.
 
 tl;dr: Any process should be free to write the tempdir, and it should
-generally behave exactly how you expect a tempdir to behave. 
+generally behave exactly how you expect a tempdir to behave.
 
 ### `/dev` and `/proc`
 
