@@ -33,10 +33,20 @@ a grasp of what they're representing if you've already understood the
 [rio](../cli/rio) command and the [Layer 0](../design/API#layer-0) model
 of [Wares](../glossary#Ware).
 
-Formula **actions** can include many details, covered in further sections:
+Formula **actions** can be thought of as roughly a shell script that runs in a
+container which is populated with the filesets specified by the WareIDs in your
+input section.  They also include many other fields:
 
-- [Default Values](./defaults)
-- [Execution Policy](./policy)
+- exec command
+- environment vars
+- uid/gid for exec
+- working directory
+
+More information about all the fields in an action, their details, and their
+defaults are covered in further sections:
+
+- [Formula Default Values](./defaults)
+- [Formula Execution Policy](./policy)
 
 (There's also a fourth section, called "context", which often accompanies
 a formula.  The purpose of "context" is to carry around all the other incidental
