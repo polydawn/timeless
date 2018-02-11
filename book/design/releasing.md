@@ -98,3 +98,16 @@ Usually, the same item names should occur in subsequent releases as in earlier
 ones -- tooling that generates formulas using WareIDs from release catalogs
 expects the *release* name to change for each new version, but the item names
 to remain essentially constant.
+
+### Replay instructions
+
+As we've already established, releases are at heart a mapping:
+the human-readable `catalog:release:item` tuple to a specific WareID.
+However, there's a lot more we'd like to communicate as well:
+wouldn't it be nice if we could share all our build instructions
+along with a release?
+
+We can.  Remember [Computation Graphs](API#layer-2) from Layer 2 of
+the API schema?  These structures are suitable for associating with
+a release.  In fact, the exports section of a Basting lines up
+precisely with the "item name" section of a release record.
