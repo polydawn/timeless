@@ -5,6 +5,7 @@
 - [Quickstart](./quickstart.md)
 - [Design Concepts](./design/README.md)
 	- [Timeless Stack API layers](./design/API.md)
+	- [Release Schema](./design/releasing.md)
 	- [Responsible Packaging](./design/packaging.md)
 - [CLI docs](./cli/README.md)
 	- [Rio](./cli/rio.md)
