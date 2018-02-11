@@ -29,10 +29,10 @@ CLI synopsis
 ------------
 
 ```
-rio pack <packType> <srcPath>
-rio unpack <packType:wareID> <dstPath>
-rio scan <packType> --source=<url>
-rio mirror <packType:wareID> --target=<url...>
+rio unpack <packType:wareID> <dstPath> [--source=<url>...]
+rio pack   <packType> <srcPath> [--target=<url>]
+rio scan   <packType> --source=<url>
+rio mirror <packType:wareID> --target=<url> [--source=<url>...]
 ```
 
 - `rio pack` takes files on your filesystem and packs them into a Ware (also
