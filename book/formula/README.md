@@ -17,7 +17,7 @@ Formulas come in three parts:
 ```
 {
 	"inputs": {
-		[... map of paths to PackIDs ...]
+		[... map of paths to WareIDs ...]
 	},
 	"action": {
 		[... structure with commands and env ...]
