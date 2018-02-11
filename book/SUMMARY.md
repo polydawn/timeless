@@ -7,6 +7,7 @@
 	- [Timeless Stack API layers](./design/API.md)
 	- [Release Schema](./design/releasing.md)
 	- [Responsible Packaging](./design/packaging.md)
+- [Formulas](./formula/README.md)
 - [CLI docs](./cli/README.md)
 	- [Rio (I/O)](./cli/rio.md)
 	- [Repeatr (Containers)](./cli/repeatr.md)
