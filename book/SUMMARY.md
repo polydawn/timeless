@@ -1,7 +1,6 @@
 # Summary
 
 - [Welcome](./README.md)
-	- [How to navigate this document](./nav.md)
 - [Quickstart](./quickstart.md)
 - [Design Concepts](./design/README.md)
 	- [Timeless Stack API layers](./design/API.md)

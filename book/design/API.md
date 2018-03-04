@@ -142,9 +142,14 @@ as outputs that can be referenced by other formulas later.)
 <a id=layer-2></a>
 ### Layer 2: Computation Graphs
 
-Basting -- statically represented pipelines consisting of multiple formulas, but some of which do *not* have all inputs pinned, and instead rely on other formulas in the group.
+The Timeless Stack represents pipelines by combining multiple formulas,
+but some of which do *not* have all inputs pinned, and instead rely on other
+formulas in the pipeline.  This reuses as much of the lower layer API as possible,
+but allows more flexibility.
 
-While this layer is still standardized and used by multiple core tools in the timeless stack, it is much more relaxed that the prior two layers: human-selected names are present here to identify the individual step formulas and their relationships.
+While this layer is still standardized and used by multiple core tools in the timeless stack,
+it is much more relaxed that the prior two layers:
+human-selected names are present here to identify the individual step formulas and their relationships.
 
 As a result of the use of human-meaningful names rather than hashes, documents
 at Layer 2 are *not* trivially globally content-addressable.
