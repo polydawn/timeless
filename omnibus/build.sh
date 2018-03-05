@@ -23,22 +23,25 @@ export REPEATR_MEMODIR=".memo"
 BASE_IMG_HASH="tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
 BASE_IMG_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-GO_COMPILER_HASH="tar:8ZaAmtWZbjtNfJWD8nmGRLDn2Ec745wKWoee4Tu1ZcxacdmMWMv1ssjbGrg8kmwn1e"
-GO_COMPILER_URL="https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz"
+GO_COMPILER_HASH="tar:7st3WqLqTZSvYMGL2i68xMr5F5MhjiFqoXAxigxFN7mdW8GdfaXs7CCu61jeycxdJV"
+GO_COMPILER_URL="https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz"
 
-RIO_SRC_HASH="git:825d8382ac3d46deb89104460bbfb5fbc779dab5"
+RIO_SRC_HASH="git:21e49c26cb6fbfd5838bc3d9b2da802fc37bcc97"
 RIO_SRC_URL="https://github.com/polydawn/rio"
 
 REPEATR_PLUGIN_RUNC_HASH="tar:9ZaF8VyS4kiVThF3gxFGKVpb3df7wE4vqgTdWFXG5KnQJdYScbjtDsCfxNvQbw6JiB"
 REPEATR_PLUGIN_RUNC_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-REPEATR_SRC_HASH="git:3cf6a45846f1b33e6459adee244f1ac18ae0d511"
+REPEATR_SRC_HASH="git:99addc1f0ee65fdc6e8dd03c6e0d13ed2ea212ea"
 REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 
-HITCH_SRC_HASH="git:412cd1d14836502b86fb4d66059890d4ed48ec97"
+HITCH_SRC_HASH="git:30fa18f5ee71bde8b07edbab150a83073487e6ad"
 HITCH_SRC_URL="https://github.com/polydawn/hitch"
 
-REFMT_SRC_HASH="git:0c95c88dcc363f51f29c9b0a5d22321c5d70b51f"
+HEFT_SRC_HASH="git:a4857a9e3dbf7a232f3df6d27f4b3e00327110b8"
+HEFT_SRC_URL="https://github.com/polydawn/heft"
+
+REFMT_SRC_HASH="git:e8b5eff0fd0354ff81d16c4b28f9dd916fc6aca9"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
 
@@ -129,6 +132,38 @@ echo $rr
 HITCH_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
+### Build Heft
+rr="$(repeatr run <(refmt yaml=json << EOF
+  formula:
+    inputs:
+      "/":         "$BASE_IMG_HASH"
+      "/app/go":   "$GO_COMPILER_HASH"
+      "/task":     "$HEFT_SRC_HASH"
+    action:
+      exec:
+        - "/bin/bash"
+        - "-c"
+        - |
+          export PATH=\$PATH:/app/go/go/bin
+          export GOPATH=\$PWD/.gopath
+          export GOBIN=\$PWD/bin
+          go test ./...
+          go install ./cmd/...
+    outputs:
+      "/task/bin": {packtype: "tar"}
+  context:
+    fetchUrls:
+      "/":         ["$BASE_IMG_URL"]
+      "/app/go":   ["$GO_COMPILER_URL"]
+      "/task":     ["$HEFT_SRC_URL"]
+    saveUrls:
+      "/task/bin": "ca+file://./warehouse/"
+EOF
+))"
+echo $rr
+HEFT_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
+
+
 ### Build Refmt.
 rr="$(repeatr run <(refmt yaml=json << EOF
   formula:
@@ -168,6 +203,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/repeatr":  "$REPEATR_LINUXAMD64_HASH"
       "/task/parts/runc":     "$REPEATR_PLUGIN_RUNC_HASH"
       "/task/parts/hitch":    "$HITCH_LINUXAMD64_HASH"
+      "/task/parts/heft":     "$HEFT_LINUXAMD64_HASH"
       "/task/parts/refmt":    "$REFMT_LINUXAMD64_HASH"
     action:
       exec:
@@ -176,7 +212,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - |
           mkdir out
           mkdir out/bin
-          mv parts/{rio,repeatr,hitch,refmt}/* out/bin
+          mv parts/{rio,repeatr,hitch,heft,refmt}/* out/bin
           mkdir out/bin/plugins
           mv parts/runc/runc out/bin/plugins/repeatr-plugin-runc
     outputs:
@@ -188,6 +224,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/repeatr":  ["ca+file://./warehouse/"]
       "/task/parts/runc":     ["$REPEATR_PLUGIN_RUNC_URL"]
       "/task/parts/hitch":    ["ca+file://./warehouse/"]
+      "/task/parts/heft":     ["ca+file://./warehouse/"]
       "/task/parts/refmt":    ["ca+file://./warehouse/"]
     saveUrls:
       "/task/out": "ca+file://./warehouse/"
