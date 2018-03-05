@@ -38,6 +38,9 @@ REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 HITCH_SRC_HASH="git:30fa18f5ee71bde8b07edbab150a83073487e6ad"
 HITCH_SRC_URL="https://github.com/polydawn/hitch"
 
+HEFT_SRC_HASH="git:a4857a9e3dbf7a232f3df6d27f4b3e00327110b8"
+HEFT_SRC_URL="https://github.com/polydawn/heft"
+
 REFMT_SRC_HASH="git:e8b5eff0fd0354ff81d16c4b28f9dd916fc6aca9"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
@@ -129,6 +132,38 @@ echo $rr
 HITCH_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
+### Build Heft
+rr="$(repeatr run <(refmt yaml=json << EOF
+  formula:
+    inputs:
+      "/":         "$BASE_IMG_HASH"
+      "/app/go":   "$GO_COMPILER_HASH"
+      "/task":     "$HEFT_SRC_HASH"
+    action:
+      exec:
+        - "/bin/bash"
+        - "-c"
+        - |
+          export PATH=\$PATH:/app/go/go/bin
+          export GOPATH=\$PWD/.gopath
+          export GOBIN=\$PWD/bin
+          go test ./...
+          go install ./cmd/...
+    outputs:
+      "/task/bin": {packtype: "tar"}
+  context:
+    fetchUrls:
+      "/":         ["$BASE_IMG_URL"]
+      "/app/go":   ["$GO_COMPILER_URL"]
+      "/task":     ["$HEFT_SRC_URL"]
+    saveUrls:
+      "/task/bin": "ca+file://./warehouse/"
+EOF
+))"
+echo $rr
+HEFT_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
+
+
 ### Build Refmt.
 rr="$(repeatr run <(refmt yaml=json << EOF
   formula:
@@ -168,6 +203,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/repeatr":  "$REPEATR_LINUXAMD64_HASH"
       "/task/parts/runc":     "$REPEATR_PLUGIN_RUNC_HASH"
       "/task/parts/hitch":    "$HITCH_LINUXAMD64_HASH"
+      "/task/parts/heft":     "$HEFT_LINUXAMD64_HASH"
       "/task/parts/refmt":    "$REFMT_LINUXAMD64_HASH"
     action:
       exec:
@@ -176,7 +212,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - |
           mkdir out
           mkdir out/bin
-          mv parts/{rio,repeatr,hitch,refmt}/* out/bin
+          mv parts/{rio,repeatr,hitch,heft,refmt}/* out/bin
           mkdir out/bin/plugins
           mv parts/runc/runc out/bin/plugins/repeatr-plugin-runc
     outputs:
@@ -188,6 +224,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/repeatr":  ["ca+file://./warehouse/"]
       "/task/parts/runc":     ["$REPEATR_PLUGIN_RUNC_URL"]
       "/task/parts/hitch":    ["ca+file://./warehouse/"]
+      "/task/parts/heft":     ["ca+file://./warehouse/"]
       "/task/parts/refmt":    ["ca+file://./warehouse/"]
     saveUrls:
       "/task/out": "ca+file://./warehouse/"
