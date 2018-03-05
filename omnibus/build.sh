@@ -23,8 +23,8 @@ export REPEATR_MEMODIR=".memo"
 BASE_IMG_HASH="tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
 BASE_IMG_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-GO_COMPILER_HASH="tar:8ZaAmtWZbjtNfJWD8nmGRLDn2Ec745wKWoee4Tu1ZcxacdmMWMv1ssjbGrg8kmwn1e"
-GO_COMPILER_URL="https://storage.googleapis.com/golang/go1.9.2.linux-amd64.tar.gz"
+GO_COMPILER_HASH="tar:7st3WqLqTZSvYMGL2i68xMr5F5MhjiFqoXAxigxFN7mdW8GdfaXs7CCu61jeycxdJV"
+GO_COMPILER_URL="https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz"
 
 RIO_SRC_HASH="git:21e49c26cb6fbfd5838bc3d9b2da802fc37bcc97"
 RIO_SRC_URL="https://github.com/polydawn/rio"
@@ -38,7 +38,7 @@ REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 HITCH_SRC_HASH="git:30fa18f5ee71bde8b07edbab150a83073487e6ad"
 HITCH_SRC_URL="https://github.com/polydawn/hitch"
 
-REFMT_SRC_HASH="git:96334d825f86c445ecd52f4ec78dbbef9adb0e1f"
+REFMT_SRC_HASH="git:e8b5eff0fd0354ff81d16c4b28f9dd916fc6aca9"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
 
