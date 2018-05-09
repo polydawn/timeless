@@ -70,7 +70,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 RIO_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
@@ -99,7 +99,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 REPEATR_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
@@ -128,7 +128,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 HITCH_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
@@ -160,7 +160,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 HEFT_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
@@ -189,7 +189,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 REFMT_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
@@ -230,5 +230,5 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/out": "ca+file://./warehouse/"
 EOF
 ))"
-echo $rr
+echo "$rr"
 OMNIBUS_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
