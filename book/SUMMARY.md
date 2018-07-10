@@ -15,6 +15,7 @@
 	- [Hitch (Releases)](./cli/hitch.md)
 	- [Heft (Planning)](./cli/heft.md)
 	<!-- todo: more sections as the other tools stabilize api -->
+- [Examples](./examples.md)
 
 ---
 
