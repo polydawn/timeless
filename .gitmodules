@@ -1,0 +1,3 @@
+[submodule "omnibus/.timeless/catalog"]
+	path = omnibus/.timeless/catalog
+	url = https://github.com/polydawn/catalog
