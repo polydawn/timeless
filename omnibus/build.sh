@@ -32,16 +32,13 @@ RIO_SRC_URL="https://github.com/polydawn/rio"
 REPEATR_PLUGIN_RUNC_HASH="tar:9ZaF8VyS4kiVThF3gxFGKVpb3df7wE4vqgTdWFXG5KnQJdYScbjtDsCfxNvQbw6JiB"
 REPEATR_PLUGIN_RUNC_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-REPEATR_SRC_HASH="git:33645e9ec7a4ab88c4c3453d1a9a779ffda54fe8"
+REPEATR_SRC_HASH="git:c87a4d705ed42a401c7f1a82604ab8ab226955e8"
 REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 
-HITCH_SRC_HASH="git:ff4f71a5ba17e9d3e153762859b1f70fc2227927"
-HITCH_SRC_URL="https://github.com/polydawn/hitch"
+STELLAR_SRC_HASH="git:8dc00ed104b2f60a974ba8aedfaca6cee0177594"
+STELLAR_SRC_URL="https://github.com/polydawn/stellar"
 
-HEFT_SRC_HASH="git:6e43c6757cc374c3d2a658f1524924f3a6bcd592"
-HEFT_SRC_URL="https://github.com/polydawn/heft"
-
-REFMT_SRC_HASH="git:b0c505d9a8cea4460b8ac57691d4ce9381e1e264"
+REFMT_SRC_HASH="git:c560ab3730e478a95a2352d3a277bc14c34c4665"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
 
@@ -103,42 +100,13 @@ echo "$rr"
 REPEATR_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
-### Build Hitch.
+### Build Stellar
 rr="$(repeatr run <(refmt yaml=json << EOF
   formula:
     inputs:
       "/":         "$BASE_IMG_HASH"
       "/app/go":   "$GO_COMPILER_HASH"
-      "/task":     "$HITCH_SRC_HASH"
-    action:
-      exec:
-        - "/bin/bash"
-        - "-c"
-        - |
-          export PATH=\$PATH:/app/go/go/bin
-          ./goad
-    outputs:
-      "/task/bin": {packtype: "tar"}
-  context:
-    fetchUrls:
-      "/":         ["$BASE_IMG_URL"]
-      "/app/go":   ["$GO_COMPILER_URL"]
-      "/task":     ["$HITCH_SRC_URL"]
-    saveUrls:
-      "/task/bin": "ca+file://./warehouse/"
-EOF
-))"
-echo "$rr"
-HITCH_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
-
-
-### Build Heft
-rr="$(repeatr run <(refmt yaml=json << EOF
-  formula:
-    inputs:
-      "/":         "$BASE_IMG_HASH"
-      "/app/go":   "$GO_COMPILER_HASH"
-      "/task":     "$HEFT_SRC_HASH"
+      "/task":     "$STELLAR_SRC_HASH"
     action:
       exec:
         - "/bin/bash"
@@ -147,21 +115,20 @@ rr="$(repeatr run <(refmt yaml=json << EOF
           export PATH=\$PATH:/app/go/go/bin
           export GOPATH=\$PWD/.gopath
           export GOBIN=\$PWD/bin
-          go test ./...
-          go install ./cmd/...
+          go install ./cmd/*
     outputs:
       "/task/bin": {packtype: "tar"}
   context:
     fetchUrls:
       "/":         ["$BASE_IMG_URL"]
       "/app/go":   ["$GO_COMPILER_URL"]
-      "/task":     ["$HEFT_SRC_URL"]
+      "/task":     ["$STELLAR_SRC_URL"]
     saveUrls:
       "/task/bin": "ca+file://./warehouse/"
 EOF
 ))"
 echo "$rr"
-HEFT_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
+STELLAR_LINUXAMD64_HASH="$(echo "$rr" | jq -r '.results["/task/bin"]')"
 
 
 ### Build Refmt.
@@ -202,8 +169,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/rio":      "$RIO_LINUXAMD64_HASH"
       "/task/parts/repeatr":  "$REPEATR_LINUXAMD64_HASH"
       "/task/parts/runc":     "$REPEATR_PLUGIN_RUNC_HASH"
-      "/task/parts/hitch":    "$HITCH_LINUXAMD64_HASH"
-      "/task/parts/heft":     "$HEFT_LINUXAMD64_HASH"
+      "/task/parts/stellar":  "$STELLAR_LINUXAMD64_HASH"
       "/task/parts/refmt":    "$REFMT_LINUXAMD64_HASH"
     action:
       exec:
@@ -212,7 +178,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - |
           mkdir out
           mkdir out/bin
-          mv parts/{rio,repeatr,hitch,heft,refmt}/* out/bin
+          mv parts/{rio,repeatr,stellar,refmt}/* out/bin
           mkdir out/bin/plugins
           mv parts/runc/runc out/bin/plugins/repeatr-plugin-runc
     outputs:
@@ -224,7 +190,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
       "/task/parts/repeatr":  ["ca+file://./warehouse/"]
       "/task/parts/runc":     ["$REPEATR_PLUGIN_RUNC_URL"]
       "/task/parts/hitch":    ["ca+file://./warehouse/"]
-      "/task/parts/heft":     ["ca+file://./warehouse/"]
+      "/task/parts/stellar":  ["ca+file://./warehouse/"]
       "/task/parts/refmt":    ["ca+file://./warehouse/"]
     saveUrls:
       "/task/out": "ca+file://./warehouse/"
