@@ -2,7 +2,7 @@
 set -euo pipefail
 set -x
 
-mdbook build -d site
+mdbook build
 git init site
 (cd site
 find -type f -print0 | xargs -0 sed -i 's/\.html"/"/g' # shorter links plz

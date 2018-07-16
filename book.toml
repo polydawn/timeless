@@ -1,2 +1,11 @@
+[book]
 title = "the Timeless Stack"
 description = "Documentation, guides, and examples for Repeatr, Rio, and the Timeless Stack."
+src = "book"
+
+[build]
+build-dir = "site"
+create-missing = false
+
+[output.html]
+theme = "Navy"
