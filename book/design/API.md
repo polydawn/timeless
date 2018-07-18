@@ -44,7 +44,7 @@ The Layers, in detail
 The most basic part of the Timeless Stack APIs are WareIDs -- hashes, which
 identify content, fully immutably.
 
-The main tool at this level is [Rio](./cli/rio).
+The main tool at this level is [Rio](../cli/rio.md).
 Operations like `rio pack` and `rio unpack` convert filesystems into packed
 Wares (which are easy to replicate to other computers) and WareIDs (so we can
 easily refer to the Wares even before copying them)... and back again to filesystems.
@@ -72,7 +72,7 @@ that associate human-readable names to these opaque and immutable references.
 
 Formulas and RunRecords -- hashable, contain no human naming, identifying computations, fully static.
 
-The main tool at this level is [Repeatr](./cli/repeatr).  The most common
+The main tool at this level is [Repeatr](../cli/repeatr.md).  The most common
 command is `repeatr run`, which takes a `Formula`, evaluates it, and returns
 a `RunRecord` (see the example data structures, below).
 
@@ -241,7 +241,10 @@ to the outputs from a step.  These "exports" are listed again in a final, additi
 <a id=layer-3></a>
 ### Layer 3: Planners
 
-Planners at large -- this layer is open to substantial interpretation and not actually standardized; the only constraint for integrating it into the Timeless ecosystem is that whatever is going on at this layer, it has to produce the "basting" format; from there, other tools can interoperate.
+Planners at large -- this layer is open to substantial interpretation and not actually standardized;
+the only constraint for integrating it into the Timeless ecosystem is that
+whatever is going on at this layer, it has to produce the "basting" format;
+from there, other tools can interoperate.
 
 
 Which layer should I interact with?

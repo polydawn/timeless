@@ -2,7 +2,7 @@ Formulas
 ========
 
 Formulas are one of the core API objects in the Timeless Stack.
-They're a [Layer 1](../design/API#layer-1) object in the big picture.
+They're a [Layer 1](../design/API.md#layer-1) object in the big picture.
 
 Formulas are a description of a container, as a pure function:
 we list inputs (by hash, thus immutably), then describe a process,
@@ -30,8 +30,8 @@ Formulas come in three parts:
 
 Formula **inputs** and **outputs** are fairly straightforward; you can quickly get
 a grasp of what they're representing if you've already understood the
-[rio](../cli/rio) command and the [Layer 0](../design/API#layer-0) model
-of [Wares](../glossary#Ware).
+[rio](../cli/rio.md) command and the [Layer 0](../design/API.md#layer-0) model
+of [Wares](../glossary.md#Ware).
 
 Formula **actions** can be thought of as roughly a shell script that runs in a
 container which is populated with the filesets specified by the WareIDs in your
@@ -45,8 +45,8 @@ input section.  They also include many other fields:
 More information about all the fields in an action, their details, and their
 defaults are covered in further sections:
 
-- [Formula Default Values](./defaults)
-- [Formula Execution Policy](./policy)
+- [Formula Default Values](./defaults.md)
+- [Formula Execution Policy](./policy.md)
 
 (There's also a fourth section, called "context", which often accompanies
 a formula.  The purpose of "context" is to carry around all the other incidental

@@ -23,8 +23,8 @@ installing
 ----------
 
 First things first: we'll need a
-[`repeatr`](./tools-repeatr)
-(and [`rio`](./tools-rio)) binary on our `$PATH`.
+[`repeatr`](./cli/repeatr.md)
+(and [`rio`](./cli/rio.md)) binary on our `$PATH`.
 
 To build the latest versions: clone and follow the instructions in
 https://github.com/polydawn/repeatr .  This will require a [go compiler](https://golang.org/dl/), bash, git, and not much else.
@@ -34,7 +34,7 @@ https://github.com/polydawn/repeatr .  This will require a [go compiler](https:/
 computing with repeatr
 ----------------------
 
-The first piece of the Timeless Stack we'll use is [Repeatr](./tools-repeatr).
+The first piece of the Timeless Stack we'll use is [Repeatr](./cli/repeatr.md).
 Repeatr computes things -- and you guessed it, hopefully repeatedly.
 To do this, Repeatr uses [containers](./glossary.md#containers) to isolate environments,
 and it will be our job to give a list identifing all of our raw materials to Repeatr so it can set up that isolated environment.
@@ -86,7 +86,7 @@ hello world!
 }
 ```
 
-This json object is called a [Run Record](./glossary#runrecord).
+This json object is called a [Run Record](./glossary.md#runrecord).
 You get one from every `repeatr run` invocation, and they describe
 both the setup (the `formulaID` property is a hash describing the formula we just ran!  This will be very useful, later), and the results... this time, we have an empty `results` field, but we'll see that used in just a moment; also, you can see the command in the container exited successfully by the `"exitCode": 0` line.
 
@@ -189,7 +189,7 @@ But what about at the edges of the system?
 How do we import new stuff from the outside world?
 How do we export stuff we make to other folks?
 
-The answers all these questions are pretty simple: [`rio`](./tools-rio).
+The answers all these questions are pretty simple: [`rio`](./cli/rio.md).
 You can use `rio --help` to get an overview of everything Rio can do;
 in short, it's for moving packed Wares around and for shuffling files in and out of packed form.
 `rio` was what `repeatr` used earlier to get and save your files; if you watch

@@ -1,10 +1,10 @@
 CLI Documentation
 =================
 
-The Timeless Stack ships as several individual binaries, separated by which [layer](./design/API)
+The Timeless Stack ships as several individual binaries, separated by which [layer](../design/API.md)
 they operate on:
 
-- [rio](./cli/rio) -- Operations on filesets and wares
-- [repeatr](./cli/repeatr) -- Evaluates formulas in containers
-- [hitch](./cli/hitch) -- Manages release databases
-- [heft](./cli/heft) -- A Layer3+ pipeline planning tool
+- [rio](./rio.md) -- Operations on filesets and wares
+- [repeatr](./repeatr.md) -- Evaluates formulas in containers
+- [hitch](./hitch.md) -- Manages release databases
+- [heft](./heft.md) -- A Layer3+ pipeline planning tool

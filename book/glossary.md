@@ -72,7 +72,7 @@ and what parts of the filesystem to save as resultant Wares.
 Since Wares in a Formula are referred to by their content-addressable
 [WareID](#WareID), Formulas in turn are an immutable description of how to set
 up and run something.
-[Repeatr](cli/repeatr) evaluates a Formula to produce a [RunRecord](#RunRecord).
+[Repeatr](./cli/repeatr.md) evaluates a Formula to produce a [RunRecord](#RunRecord).
 
 ---
 
