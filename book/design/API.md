@@ -142,46 +142,59 @@ as outputs that can be referenced by other formulas later.)
 <a id=layer-2></a>
 ### Layer 2: Computation Graphs
 
-The Timeless Stack represents pipelines by combining multiple formulas,
-but some of which do *not* have all inputs pinned, and instead rely on other
-formulas in the pipeline.  This reuses as much of the lower layer API as possible,
-but allows more flexibility.
+The Timeless Stack represents multi-stage computations by generating a series of
+formulas from a document which has psuedo-formulas, which rather than having all
+hashed wareIDs as inputs already pinned, instead uses human-readable names
+and references.
+These human-readable references can connect the outputs of one formula to be
+the inputs of another; or reference external data (e.g. previous releases of
+system which have publicly tracked names).
 
-While this layer is still standardized and used by multiple core tools in the timeless stack,
-it is much more relaxed that the prior two layers:
-human-selected names are present here to identify the individual step formulas and their relationships.
+These multi-stage computations are called "modules", and each psuedo-formula is a "step".
+The module-local named references which connect Steps are called "slot refs".
+Slot Refs can be initialized either by the outputs of a Step, or by external data using a "import".
+Imports come in several forms, but the main one is "catalog imports", which refer to snapshots of previously produced data.
+
+At Layer 2 we also begin to have multiple documents of different types which
+will all be referenced at the same time.
+We have not just the Module which you will author; but will need to import data
+from Catalogs, and export releases to put more info into Catalogs for future use.
+We're starting move towards updatability rather than repeatability here;
+it will be up to the user to make sure all these documents are versioned in
+a coherent snapshot for deep-time repeatability.
 
 As a result of the use of human-meaningful names rather than hashes, documents
 at Layer 2 are *not* trivially globally content-addressable.
 In other words, two different people can write semantically identical
-Layer 2 pipelines, which generate totally identically Layer 1 formulas...
+Layer 2 modules, which generate totally identical Layer 1 formulas...
 and while the Layer 1 formulas *will* converge to the exact same identity
-hashes, the Layer pipelines will not.
+hashes, the Layer 2 modules may not, if different locally-scoped names were used.
 Examples of differences that may result in identical Layer 1 content but
-distinct Layer 2 pipelines include step names (one author may have called a step
-`"stepFoo"` while the other titled it `"stepBaz"`) or using the same Wares but
-by different aliases (one pipeline might reference a WareID released as
-`"foo:v1.0:linux"` while another references it as `"foo:v1.0rc2:linux"` when
-those names actually resolve to the same WareID).
+distinct Layer 2 modules include step names (one author may have called a step
+`"stepFoo"` while the other titled it `"stepBaz"`) or imports which resolve to
+the same Wares but got there via different references (one module might import
+a WareID released as `"foo:v1.0:linux"` while another references it as
+`"foo:v1.0rc2:linux"`, regardless of whether both names resolve to the same WareID).
 
 <a id=layer-2-examples></a>
 #### Data Examples
 
-A basting is composed of several formula elements, plus some information to wire
-intermediate steps together ("imports") and information to name the final interesting
-results ("exports"):
+A module is composed of several steps (mostly "operations", which are the precursor
+to a formula, and will generate a formula when all inputs are resolved to hashes),
+plus some information to wire intermediate steps together ("imports") and information
+to name the final interesting results ("exports"):
 
 ```
 {
+	"imports": {
+		"base": "catalog:example.timeless.io/base:201801:linux-amd64"
+	},
 	"steps": {
 		"stepBar": {
-			"imports": {
-				"/": "example.timeless.io/base:201801:linux-amd64",
-				"/woof": "wire:stepFoo:/task/out"
-			},
-			"formula": {
+			"operation": {
 				"inputs": {
-					"/": "tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
+					"base": "/",
+					"stepFoo.out": "/woof",
 				},
 				"action": {
 					"exec": [
@@ -193,12 +206,9 @@ results ("exports"):
 			}
 		},
 		"stepFoo": {
-			"imports": {
-				"/": "example.timeless.io/base:201801:linux-amd64"
-			},
-			"formula": {
-				"inputs": {
-					"/": "tar:6q7G4hWr283FpTa5Lf8heVqw9t97b5VoMU6AGszuBYAz9EzQdeHVFAou7c4W9vFcQ6"
+			"operation": {
+				"imports": {
+					"base": "/",
 				},
 				"action": {
 					"exec": [
@@ -208,34 +218,34 @@ results ("exports"):
 					]
 				},
 				"outputs": {
-					"/task/out": {"packtype": "tar"}
+					"out": "/task/out"
 				}
 			}
 		}
 	},
 	"exports": {
-		"a-final-product": "wire:stepFoo:/task/out"
-	},
-	"contexts": {
-		// ... practical, but non-critical info (e.g. mirror URLs) attaches here
+		"a-final-product": "stepFoo.out"
 	}
 }
 ```
 
-Evaluating a basting simply evaluates each formula in order, plugs together any
-intermediates, and runs the next formula, and so on.  The result is the same as
-Layer 1: a series of RunRecords.
+Evaluating a modules simply evaluates each step in order, plugs together any
+intermediates, templates this info into a formula, evaluates it, and then turns
+the crank for the next step.  (Modules can be automatically topo-sorted based
+on dependencies, and Timeless Stack tools will evaluate things in that order.)
 
-Notice how in this example, `"stepBar"`'s Formula has one less `input` than it
-does `import`... and that additional `import` is a `"wire"`.  This means it's
-dependent on another step in the Basting -- `"stepFoo"`, in this case, and the
-output from the `"/task/out"` path when we evaluate that formula.
+The final result of evaluating a Layer 2 Module is very similar to the results
+of Layer 1 evaluation: each formula will yield a RunRecord, so we get a whole
+series of those which we can retain (mostly for audit purposes)... plus,
+we get a map of all the WareIDs produced that were marked for export.
 
-Exports of final products are the same format as intermediates: a "wire" points
-to the outputs from a step.  These "exports" are listed again in a final, additional
-`results` map at the end of evaluating a basting.
+The final map of exports is isomorphic to a catalog release items map.
+You can pipe the exports map right into a making a new release!
 
-:warning: Layer 2's `Basting` format is recently developed (early 2018).  It is subject to change.
+:warning: Layer 2's `Module` format is recently developed (mid 2018).  It is subject to change.
+
+Modules have several other interesting features, such as "submodules" and
+"ingest references" -- docs for these are TODO :)
 
 
 <a id=layer-3></a>
@@ -291,11 +301,11 @@ you'd want).
 When handling sets of computations at Layer 2, they're *still*, yes still, all
 immutable.  Even though some steps refer to other steps for their inputs, the
 typical expectation is that each step should reliably produce the same data,
-so the overall semantics of re-executing a whole Layer 2 pipeline should be the
+so the overall semantics of re-executing a whole Layer 2 module should be the
 same as an individual Layer 1 step.
 
 Layer 3 is where we finally relax on immutability, and thus it's where we begin
-to do the interesting work of generating *new* pipelines and *updating* inputs.
+to do the interesting work of generating *new* modules and *updating* inputs.
 Layer 3 can look up release information from other projects, for
 example, and bring that in as an input to the Layer 2 data.
 Being precise in this information in Layer 2 is critical for later auditability
@@ -318,17 +328,17 @@ Layer 1 Formulas can be put on something as simple as *pastebin* in order to
 share with other people.
 It can be useful for self-contained bug reports, for example.
 
-Layer 2 Basting is suitable to feed to tools which can traverse graphs and e.g.
+Layer 2 Modules are suitable to feed to tools which can traverse graphs and e.g.
 draw nice renderings of build dependencies.
 Such tools could also ask and quickly answer questions like "Find all
 dependencies ever used, recursively, to build $tool-foobar; now, tell me if they
-currently have any security vulnerabilities"?
+currently have any security vulnerabilities".
 
-Layer 2 Basting is suitable for publication in a distributed ledger.
+Layer 2 Modules is suitable for publication in a distributed ledger.
 This can be used as part of a system to make read-only public audit and
 accountability possible.
 
-Layer 2 Basting, like Layer 1 Formulas, can be easily re-evaluated -- even by
+Layer 2 Modules, like Layer 1 Formulas, can be easily re-evaluated -- even by
 other people, other machines, and even months or years later -- so it can be
 used to distribute small and reproducible instructions rather than large
 binary blobs that take lots of network and disk space.  This makes it excellent
