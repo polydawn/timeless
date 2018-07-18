@@ -253,7 +253,7 @@ Modules have several other interesting features, such as "submodules" and
 
 Planners at large -- this layer is open to substantial interpretation and not actually standardized;
 the only constraint for integrating it into the Timeless ecosystem is that
-whatever is going on at this layer, it has to produce the "basting" format;
+whatever is going on at this layer, it has to produce the "module" format;
 from there, other tools can interoperate.
 
 

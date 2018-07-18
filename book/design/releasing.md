@@ -109,5 +109,5 @@ along with a release?
 
 We can.  Remember [Computation Graphs](./API.md#layer-2) from Layer 2 of
 the API schema?  These structures are suitable for associating with
-a release.  In fact, the exports section of a Basting lines up
+a release.  In fact, the exports section of a Module lines up
 precisely with the "item name" section of a release record.
