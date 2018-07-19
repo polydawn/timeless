@@ -5,7 +5,10 @@ set -x
 mdbook build
 git init site
 (cd site
+find -type f -print0 | xargs -0 sed -i 's/index\.html"/"/g' # github does indexes like you'd expect
+find -type f -print0 | xargs -0 sed -i 's#/README#/#g' # source links to readmes aren't always fixed by mdbook?
 find -type f -print0 | xargs -0 sed -i 's/\.html"/"/g' # shorter links plz
+find -type f -print0 | xargs -0 sed -i 's/\.html#/#/g' # shorter links plz
 git remote add github git@github.com:polydawn/polydawn.github.io.git
 echo -n "repeatr.io" > CNAME # github pages config
 git add .
