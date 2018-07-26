@@ -35,7 +35,7 @@ REPEATR_PLUGIN_RUNC_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 REPEATR_SRC_HASH="git:c87a4d705ed42a401c7f1a82604ab8ab226955e8"
 REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 
-STELLAR_SRC_HASH="git:8dc00ed104b2f60a974ba8aedfaca6cee0177594"
+STELLAR_SRC_HASH="git:ddc8572a1cc981aa049e1d267350228da212f4ef"
 STELLAR_SRC_URL="https://github.com/polydawn/stellar"
 
 REFMT_SRC_HASH="git:c560ab3730e478a95a2352d3a277bc14c34c4665"
