@@ -26,19 +26,19 @@ BASE_IMG_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 GO_COMPILER_HASH="tar:7st3WqLqTZSvYMGL2i68xMr5F5MhjiFqoXAxigxFN7mdW8GdfaXs7CCu61jeycxdJV"
 GO_COMPILER_URL="https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz"
 
-RIO_SRC_HASH="git:29c3c7a0b9a71de74fb810541bb31335ac67028d"
+RIO_SRC_HASH="git:6faca2d4214a32ce47b4ee6736ee8258cc17f6cb"
 RIO_SRC_URL="https://github.com/polydawn/rio"
 
 REPEATR_PLUGIN_RUNC_HASH="tar:9ZaF8VyS4kiVThF3gxFGKVpb3df7wE4vqgTdWFXG5KnQJdYScbjtDsCfxNvQbw6JiB"
 REPEATR_PLUGIN_RUNC_URL="ca+https://repeatr.s3.amazonaws.com/warehouse/"
 
-REPEATR_SRC_HASH="git:c87a4d705ed42a401c7f1a82604ab8ab226955e8"
+REPEATR_SRC_HASH="git:72b79d281720ea29ca77597e3cdba25d1b7145bc"
 REPEATR_SRC_URL="https://github.com/polydawn/repeatr"
 
-STELLAR_SRC_HASH="git:ddc8572a1cc981aa049e1d267350228da212f4ef"
+STELLAR_SRC_HASH="git:db28b64544c38801773bd24922dc55286d73c96b"
 STELLAR_SRC_URL="https://github.com/polydawn/stellar"
 
-REFMT_SRC_HASH="git:c560ab3730e478a95a2352d3a277bc14c34c4665"
+REFMT_SRC_HASH="git:b1e39ac01e11fdcd9bfa4b80df2e1f7d4fc982b6"
 REFMT_SRC_URL="https://github.com/polydawn/refmt"
 
 
