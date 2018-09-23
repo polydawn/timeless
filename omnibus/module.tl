@@ -1,7 +1,7 @@
 {
 	"imports": {
-		"base": "catalog:images.polydawn.io/busybash:v1:linux-amd64",
-		"go": "catalog:entwine.polydawn.io/go:v1.10:linux-amd64",
+		"base": "catalog:early.polydawn.io/monolith/busybash:v1:linux-amd64",
+		"go": "catalog:early.hyphae.polydawn.io/go:v1.10:linux-amd64",
 		"src_rio": "catalog:timeless.polydawn.io/rio:v0.201:src",
 		"src_repeatr": "catalog:timeless.polydawn.io/repeatr:v0.201:src",
 		"src_stellar": "catalog:timeless.polydawn.io/stellar:v0.202:src",
