@@ -20,3 +20,4 @@
 ---
 
 [Glossary](./glossary.md)
+[Additional Resources](./resources.md)
