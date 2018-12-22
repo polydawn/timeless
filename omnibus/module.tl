@@ -19,7 +19,7 @@
 				"action": {
 					"exec": [
 						"/bin/bash", "-c",
-						"export PATH=$PATH:/app/go/go/bin && ./goad install"
+						"export PATH=$PATH:/app/go/go/bin && export GOPATH=$PWD/.gopath && export GOBIN=$PWD/bin && CGO_ENABLED=0 go install --ldflags '-extldflags \"-static\"' ./cmd/*"
 					]
 				},
 				"outputs": {
@@ -37,7 +37,7 @@
 				"action": {
 					"exec": [
 						"/bin/bash", "-c",
-						"export PATH=$PATH:/app/go/go/bin && ./fling install"
+						"export PATH=$PATH:/app/go/go/bin && export GOPATH=$PWD/.gopath && export GOBIN=$PWD/bin && CGO_ENABLED=0 go install --ldflags '-extldflags \"-static\"' ./cmd/*"
 					]
 				},
 				"outputs": {
@@ -55,7 +55,7 @@
 				"action": {
 					"exec": [
 						"/bin/bash", "-c",
-						"export PATH=$PATH:/app/go/go/bin && export GOPATH=$PWD/.gopath && export GOBIN=$PWD/bin && go install ./cmd/*"
+						"export PATH=$PATH:/app/go/go/bin && export GOPATH=$PWD/.gopath && export GOBIN=$PWD/bin && CGO_ENABLED=0 go install --ldflags '-extldflags \"-static\"' ./cmd/*"
 					]
 				},
 				"outputs": {
@@ -73,7 +73,7 @@
 				"action": {
 					"exec": [
 						"/bin/bash", "-c",
-						"export PATH=$PATH:/app/go/go/bin && ./goad"
+						"export PATH=$PATH:/app/go/go/bin && export GOPATH=$PWD/.gopath && export GOBIN=$PWD/bin && CGO_ENABLED=0 go install --ldflags '-extldflags \"-static\"' ./cmd/*"
 					]
 				},
 				"outputs": {
