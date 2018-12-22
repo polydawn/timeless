@@ -12,9 +12,9 @@
 		"rio_build": {
 			"operation": {
 				"inputs": {
-					"base": "/",
-					"go": "/app/go",
-					"src_rio": "/task"
+					"/":       "base",
+					"/app/go": "go",
+					"/task":   "src_rio"
 				},
 				"action": {
 					"exec": [
@@ -30,9 +30,9 @@
 		"repeatr_build": {
 			"operation": {
 				"inputs": {
-					"base": "/",
-					"go": "/app/go",
-					"src_repeatr": "/task"
+					"/":       "base",
+					"/app/go": "go",
+					"/task":   "src_repeatr"
 				},
 				"action": {
 					"exec": [
@@ -48,9 +48,9 @@
 		"stellar_build": {
 			"operation": {
 				"inputs": {
-					"base": "/",
-					"go": "/app/go",
-					"src_stellar": "/task"
+					"/":       "base",
+					"/app/go": "go",
+					"/task":   "src_stellar"
 				},
 				"action": {
 					"exec": [
@@ -66,9 +66,9 @@
 		"refmt_build": {
 			"operation": {
 				"inputs": {
-					"base": "/",
-					"go": "/app/go",
-					"src_refmt": "/task"
+					"/":       "base",
+					"/app/go": "go",
+					"/task":   "src_refmt"
 				},
 				"action": {
 					"exec": [
@@ -84,12 +84,12 @@
 		"assemble": {
 			"operation": {
 				"inputs": {
-					"base": "/",
-					"rio_build.bin-linux-amd64": "/task/parts/rio",
-					"repeatr_build.bin-linux-amd64": "/task/parts/repeatr",
-					"runc-bin-linux-amd64": "/task/parts/runc",
-					"stellar_build.bin-linux-amd64": "/task/parts/stellar",
-					"refmt_build.bin-linux-amd64": "/task/parts/refmt"
+					"/":                                 "base",
+					"/task/parts/rio":         "rio_build.bin-linux-amd64",
+					"/task/parts/repeatr": "repeatr_build.bin-linux-amd64",
+					"/task/parts/runc":                  "runc-bin-linux-amd64",
+					"/task/parts/stellar": "stellar_build.bin-linux-amd64",
+					"/task/parts/refmt":     "refmt_build.bin-linux-amd64"
 				},
 				"action": {
 					"exec": [
