@@ -55,7 +55,9 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - "-c"
         - |
           export PATH=\$PATH:/app/go/go/bin
-          ./goad install
+          export GOPATH=\$PWD/.gopath
+          export GOBIN=\$PWD/bin
+          CGO_ENABLED=0 go install --ldflags '-extldflags "-static"' ./cmd/*
     outputs:
       "/task/bin": {packtype: "tar"}
   context:
@@ -84,7 +86,9 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - "-c"
         - |
           export PATH=\$PATH:/app/go/go/bin
-          ./fling install
+          export GOPATH=\$PWD/.gopath
+          export GOBIN=\$PWD/bin
+          CGO_ENABLED=0 go install --ldflags '-extldflags "-static"' ./cmd/*
     outputs:
       "/task/bin": {packtype: "tar"}
   context:
@@ -115,7 +119,7 @@ rr="$(repeatr run <(refmt yaml=json << EOF
           export PATH=\$PATH:/app/go/go/bin
           export GOPATH=\$PWD/.gopath
           export GOBIN=\$PWD/bin
-          go install ./cmd/*
+          CGO_ENABLED=0 go install --ldflags '-extldflags "-static"' ./cmd/*
     outputs:
       "/task/bin": {packtype: "tar"}
   context:
@@ -144,7 +148,9 @@ rr="$(repeatr run <(refmt yaml=json << EOF
         - "-c"
         - |
           export PATH=\$PATH:/app/go/go/bin
-          ./goad
+          export GOPATH=\$PWD/.gopath
+          export GOBIN=\$PWD/bin
+          CGO_ENABLED=0 go install --ldflags '-extldflags "-static"' ./cmd/*
     outputs:
       "/task/bin": {packtype: "tar"}
   context:
