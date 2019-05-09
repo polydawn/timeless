@@ -8,8 +8,7 @@ Now in html book form!
 ----------------------
 
 The latest docs are in the process of being ported to a html book format.
-You can read that at https://polydawn.github.io/ .
-(The source is in the "book" dir in this repo.)
+You can read that at https://repeatr.io/ !
 
 
 Motivations
@@ -75,15 +74,16 @@ Tools
 |:-----------:|:-----------------------------------------------:|:-----------|
 | `repeatr`   | [github](https://github.com/polydawn/repeatr)   |  Repeatr evaluates formulas.  `formula` ---`repeatr run`---> `runrecord`
 | `rio`       | [github](https://github.com/polydawn/rio)       |  R-I/O stands for Repeatable Input/Output: it's tooling for packing Filesets into Wares, mirroring Wares between storage systems, and unpacking Filesets fetched by WareID.  Glue for getting files to and from other systems, in other words.
-| `stellar`   | [github](https://github.com/polydawn/stellar)   |  Stellar builds larger pipelines: use it to stich together several formulas by passing wares between them.  Entire pipelines quickly rebuild incrementally, automatically memoizing any steps that haven't changed.
-| `hitch`     | [github](https://github.com/polydawn/hitch)     |  Hitch associates human-readable names and metadata to WareIDs.  It's a release tracking system.  Stellar also integrates these features; hitch is for making other manual alterations.
+| `reach`     | [github](https://github.com/polydawn/reach)     |  Reach builds larger pipelines: use it to stich together several formulas by passing wares between them.  Entire pipelines quickly rebuild incrementally, automatically memoizing any steps that haven't changed.
 | `tlpkg`     | planned                                         |  The **T**ime**l**ess **p**ac**k**a**g**e manager: helps manage $PATH and environments to
 
 All parts of this stack are loosely coupled:
 
-- `hitch` can be driven entirely by shell script to make releases or look up releases and metadata.
-- `repeatr` works entirely with formulas.  You can template formulas with `reppl`, or with anything you like -- the API is simply json/yaml.
-- `tlpkg` is built to handle packages that play well in the Timeless ecosystem -- but there's nothing to say you can't use `apt` or `yum` or `dnf` inside `repeatr` containers and `reppl` pipelines.
+- `repeatr` works entirely with formulas.  You can template formulas with anything you like -- the API is simply json/yaml.
+- `reach` can be evalute modules to make declarative build pipelines work, and automatically invokes `repeatr` as needed to get it done;
+- ... or, `reach catalog` can be driven entirely by shell script to make releases or look up releases and metadata, without using the rest of the pipelining logic.
+- `rio` can pack and unpack filesystems on command, and scan remote internet resources to determine their hash -- or will do these same things automatically in service to `repeatr`.
+- `tlpkg` is built to handle packages that play well in the Timeless ecosystem -- but there's nothing to say you can't use `apt` or `yum` or `dnf` inside `repeatr` containers and `reach` pipelines.
 
 See [the ecosystem map](ecosystem.png) for a big-picture layout of how the projects are connected.
 
@@ -92,7 +92,7 @@ See [the ecosystem map](ecosystem.png) for a big-picture layout of how the proje
 |  Tool       |  Repo                                           |  Role      |
 |:-----------:|:-----------------------------------------------:|:-----------|
 | `r2k8s`     | [github](https://github.com/polydawn/r2k8s)     |  `r2k8s` bridges the repeatr and kubernetes ecosystems: run formulas remotely in a kubernetes cluster, or template kubernetes podspecs to use formulas to launch commands.
-| `formulary` | [github](https://github.com/polydawn/formulary) |  A collection of repeatr formulas.  You can use this as reference materials.  (All of our base image snapshots come from here!)
+| `radix`     | [github](https://github.com/polydawn/radix)     |  A collection of repeatr formulas and reach modules.  You can use this as reference materials.  (All of our base image snapshots come from here!)
 
 
 
