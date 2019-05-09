@@ -11,6 +11,12 @@ The latest docs are in the process of being ported to a html book format.
 You can read that at https://repeatr.io/ !
 
 
+Releases
+--------
+
+Binary releases are available on the [github releases page](https://github.com/polydawn/timeless/releases)!
+
+
 Motivations
 -----------
 
