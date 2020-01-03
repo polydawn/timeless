@@ -2,9 +2,9 @@
 	"imports": {
 		"base": "catalog:early.polydawn.io/monolith/busybash:v1:linux-amd64",
 		"go": "catalog:early.hyphae.polydawn.io/go:v1.11:linux-amd64",
-		"src_rio": "catalog:timeless.polydawn.io/rio:v0.220:src",
-		"src_repeatr": "catalog:timeless.polydawn.io/repeatr:v0.220:src",
-		"src_reach": "catalog:timeless.polydawn.io/reach:v0.300:src",
+		"src_rio": "catalog:timeless.polydawn.io/rio:v0.310:src",
+		"src_repeatr": "catalog:timeless.polydawn.io/repeatr:v0.310:src",
+		"src_reach": "catalog:timeless.polydawn.io/reach:v0.310:src",
 		"src_refmt": "catalog:timeless.polydawn.io/refmt:v0.300:src",
 		"runc-bin-linux-amd64": "catalog:timeless.polydawn.io/runc:v0.200.4:bin-linux-amd64"
 	},
